@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Birthday Sayangku ♥</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Pinyon+Script&family=Playfair+Display:wght@800&display=swap" rel="stylesheet">
+<style>
+:root{--wine:#6e1230;--rose:#d63a62;--gold:#c9923f;--ink:#4a1b2b;--soft:#a63d5f}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cormorant Garamond',Georgia,serif;color:var(--ink);overflow-x:hidden;
+ background:linear-gradient(180deg,#FFFDFB,#DCEEFF 32%,#DCEEFF 68%,#fbdfe2) fixed}
+button{font:inherit;cursor:pointer;border:0}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
+
+/* scenes */
+.scene{position:fixed;inset:0;z-index:20;display:none}
+.scene.on{display:block}
+#intro{background:linear-gradient(180deg,#FFFDFB,#DCEEFF 32%,#DCEEFF 68%,#fbdfe2);touch-action:none;user-select:none}
+.cap{position:absolute;top:19%;width:100%;text-align:center;font-style:italic;font-size:17px;letter-spacing:.05em;color:var(--soft)}
+#heart{position:absolute;left:50%;top:40%;width:92px;margin:-46px 0 0 -46px;animation:float 3s ease-in-out infinite}
+#heart::before{content:"";position:absolute;inset:-90px;background:radial-gradient(circle,rgba(240,138,165,.45),transparent 65%);z-index:-1}
+#heart svg{width:100%;display:block;filter:drop-shadow(0 10px 14px rgba(214,58,98,.35))}
+#heart.pop{animation:none;transform:scale(1.5);opacity:0;transition:.35s ease-out}
+@keyframes float{50%{transform:translateY(-8px)}}
+#bow{position:absolute;left:max(10vw,24px);top:68%;width:140px;height:120px;overflow:visible}
+#hint{position:absolute;bottom:11%;left:50%;transform:translateX(-50%);background:none;color:var(--soft);font-size:12px;letter-spacing:.28em;text-transform:uppercase;padding:8px 12px}
+#banner{background:#DCEEFF;cursor:pointer}
+#band{position:absolute;left:0;right:0;top:50%;height:min(62vh,420px);transform:translateY(-50%);display:grid;place-items:center;text-align:center;
+ background:linear-gradient(100deg,#ef6f8e,#e8465f 45%,#db3555);box-shadow:0 20px 40px -24px rgba(110,18,48,.6)}
+#band em{display:block;font-size:clamp(15px,3.6vw,19px);letter-spacing:.06em;opacity:.9}
+#band h1{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(52px,13vw,128px);line-height:.92;color:#fff;margin:10px 0 6px;letter-spacing:-.01em}
+#band svg{width:min(62vw,300px);height:16px;overflow:visible}
+#band path{stroke-dasharray:340;stroke-dashoffset:340;animation:draw 1.2s .5s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+#band{color:#fff}
+
+/* main */
+#tree{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:none}
+main{position:relative;z-index:1;opacity:0;transition:opacity 1s}
+main.ready{opacity:1}
+.top{position:fixed;top:0;left:0;right:0;padding:16px 0 22px;background:linear-gradient(180deg,rgba(255,253,251,.95) 55%,rgba(255,253,251,0));text-align:center;z-index:3;font-family:'Fraunces',serif;font-weight:600;font-size:14px;color:var(--wine);pointer-events:none}
+.hero{min-height:100vh;display:flex;align-items:flex-end;padding:0 5vw 20vh;position:relative}
+.tcard{background:rgba(255,253,251,.88);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:20px;padding:16px 24px 14px}
+.tcard small{display:block;font-style:italic;font-size:16px;color:var(--soft)}
+.tcard h2{font-family:'Pinyon Script',cursive;font-weight:400;font-size:clamp(46px,9vw,76px);line-height:.95;color:var(--rose)}
+.tcard i{display:block;width:60px;height:1.5px;background:var(--gold);margin:8px 0 6px}
+.scroll{position:absolute;left:50%;bottom:6vh;transform:translateX(-50%);white-space:nowrap;font-size:11px;letter-spacing:.22em;text-transform:uppercase;padding:8px 18px;border-radius:999px;background:rgba(255,255,255,.6);border:1px solid rgba(214,58,98,.25);color:var(--soft);text-decoration:none}
+.col{width:min(540px,92vw);margin:0 auto 28px}
+@media(min-width:900px){.col{margin-left:calc(62vw - 270px)}.tcard{margin-bottom:4vh}}
+@media(max-width:899px){.hero{align-items:flex-start;padding-top:13vh}}
+.card{background:rgba(255,253,251,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:24px;padding:18px;box-shadow:0 14px 36px -16px rgba(125,40,70,.3),inset 0 0 0 1px rgba(247,182,198,.55)}
+.gh{display:flex;justify-content:space-between;align-items:baseline;margin:2px 2px 12px}
+.gh h3{font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:var(--wine)}
+.gh span{font-size:13px;font-style:italic;color:var(--soft)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.tile{aspect-ratio:1;border-radius:14px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#fbd3dc,#f4a6b8);box-shadow:0 5px 12px -6px rgba(125,40,70,.4)}
+.tile img{width:100%;height:100%;object-fit:cover}
+.tile svg{width:30%;opacity:.8}
+.tile:nth-child(3n+2){background:linear-gradient(135deg,#DCEEFF,#A9C9F5)}
+.tile:nth-child(3n){background:linear-gradient(135deg,#DCD8F7,#A9C9F5)}
+.msg{text-align:center;padding:26px 20px 28px}
+.chip{display:inline-flex;align-items:center;gap:7px;background:#fde2e8;border:1px solid #f8c3d0;border-radius:999px;padding:4px 12px 4px 5px;font-family:'Fraunces',serif;font-size:11px;color:var(--soft)}
+.chip b{display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--rose);color:#fff;font-size:9px}
+.msg h3{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(23px,5.5vw,30px);color:var(--wine);margin:14px 0 12px}
+.msg p{font-style:italic;font-size:clamp(14.5px,3.8vw,19px);line-height:1.85}
+.sign{display:block;margin-top:14px;font-family:'Fraunces',serif;font-weight:700;font-style:italic;font-size:22px;color:var(--rose)}
+.gift{display:flex;align-items:center;gap:8px;margin:18px auto 110px;padding:11px 24px;border-radius:999px;background:var(--rose);color:#fff;font-weight:600;font-size:16px;box-shadow:0 10px 22px -8px rgba(214,58,98,.6);transition:transform .15s}
+.gift:hover{transform:translateY(-2px)}
+.gift svg{width:16px;height:16px}
+
+/* music button (top-left, like the original) */
+.music{position:fixed;top:9px;left:12px;z-index:4;width:40px;height:40px;border-radius:50%;background:rgba(255,253,251,.94);box-shadow:0 6px 16px -8px rgba(125,40,70,.55);display:none;align-items:center;justify-content:center;gap:3px}
+.music.on{display:flex}
+.music i{display:block;width:3px;height:9px;border-radius:2px;background:var(--rose)}
+.music.play i{animation:eq .9s ease-in-out infinite}
+.music.play i:nth-child(2){animation-delay:.2s}
+.music.play i:nth-child(3){animation-delay:.4s}
+@keyframes eq{50%{transform:scaleY(1.9)}}
+
+/* dialog */
+dialog{border:0;border-radius:24px;padding:28px 24px 24px;width:min(92vw,330px);margin:auto;text-align:center;background:#FFFDFB;color:var(--ink);overflow:visible;box-shadow:0 30px 70px -20px rgba(110,18,48,.4)}
+dialog::backdrop{background:rgba(110,60,80,.35);backdrop-filter:blur(7px)}
+#x{position:absolute;top:10px;right:12px;background:none;font-size:22px;color:var(--soft);line-height:1}
+dialog .gi{width:44px;height:44px}
+dialog h4{font-family:'Fraunces',serif;font-size:21px;line-height:1.25;color:var(--rose);margin:10px 0 8px}
+dialog p{font-style:italic;font-size:16px;line-height:1.55;color:#8c5568}
+.chip2{margin:16px auto 18px;display:inline-block;font-size:10px;letter-spacing:.2em;padding:8px 16px;border-radius:12px;background:#fdf0e6;border:1px solid #f1d9c4;color:#b9803f}
+.claim{width:100%;padding:13px;border-radius:999px;background:var(--rose);color:#fff;font-weight:700;font-size:16px}
+.claim:disabled{opacity:.8;cursor:default}
+#fx{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}#band path{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+
+<!-- 1. Intro: pull the bow and shoot the heart -->
+<section class="scene on" id="intro" aria-label="Pembuka">
+  <p class="cap">a little something, for you</p>
+  <div id="heart"><svg viewBox="0 0 100 92" aria-hidden="true"><defs><radialGradient id="hg" cx=".35" cy=".28" r=".85"><stop offset="0" stop-color="#ffc4d4"/><stop offset=".5" stop-color="#ff8fab"/><stop offset="1" stop-color="#d63a62"/></radialGradient></defs><path fill="url(#hg)" d="M50 90C18 66 4 48 4 30 4 15 15 6 28 6c9 0 18 5 22 14C54 11 63 6 72 6c13 0 24 9 24 24 0 18-14 36-46 60z"/><ellipse cx="30" cy="25" rx="12" ry="7" fill="#fff" opacity=".55" transform="rotate(-30 30 25)"/></svg></div>
+  <svg id="bow" viewBox="-70 -60 140 120" aria-hidden="true">
+    <g id="rig">
+      <path d="M14 -48Q-16 0 14 48" fill="none" stroke="#b8865f" stroke-width="3" stroke-linecap="round"/>
+      <polyline id="string" points="14,-48 14,0 14,48" fill="none" stroke="#b8865f" stroke-width="1.2"/>
+      <g id="arrow" transform="translate(14,0)">
+        <line x1="-6" y1="0" x2="62" y2="0" stroke="#d9a441" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M62 -5L75 0L62 5z" fill="#d9a441"/>
+        <path d="M0 6C-9 -1-9 -8-4 -8-1 -8 0 -6 0 -5 0 -6 1 -8 4 -8 9 -8 9 -1 0 6z" fill="#e8607f" transform="translate(-8,0)"/>
+      </g>
+    </g>
+  </svg>
+  <button id="hint">Pull &amp; Release</button>
+</section>
+
+<!-- 2. Banner -->
+<section class="scene" id="banner" aria-label="Happy Birthday">
+  <div id="band"><div>
+    <em>make a wish...</em>
+    <h1>Happy<br>Birthday</h1>
+    <svg viewBox="0 0 300 16" aria-hidden="true"><path d="M4 11Q80 3 150 9T296 6" fill="none" stroke="#f6d28b" stroke-width="3" stroke-linecap="round"/></svg>
+    <em style="margin-top:14px;font-size:clamp(13px,3vw,15px)">to someone worth celebrating</em>
+  </div></div>
+</section>
+
+<!-- 3. Main -->
+<canvas id="tree" aria-hidden="true"></canvas>
+<div class="top">Blooming Wishes</div>
+<!-- 🎵 SONG: "wave to earth - love." -> put your copy next to this file as love.mp3 (see CONFIG.song below) -->
+<button class="music" id="music" aria-label="Play music" title="wave to earth - love."><i></i><i></i><i></i></button>
+<audio id="song" loop preload="auto"></audio>
+<main id="main">
+  <header class="hero">
+    <div class="tcard">
+      <small>and... make it count</small>
+      <h2>Happy<br>Birthday</h2>
+      <i></i>
+      <small>here’s to a year that blooms</small>
+    </div>
+    <a class="scroll" href="#memories">Scroll for memories ⌄</a>
+  </header>
+  <!-- 📸 PHOTOS: the 6 tiles below are built from CONFIG.photos in the script at the bottom.
+       To insert your photos, scroll down to "INSERT YOUR PHOTOS HERE" and type the file names. -->
+  <section class="col card" id="memories" aria-labelledby="memTitle">
+    <div class="gh"><h3 id="memTitle">Beautiful Memories</h3><span id="count"></span></div>
+    <div class="grid" id="grid"></div>
+  </section>
+  <section class="col card msg" aria-labelledby="msgTitle">
+    <div class="chip"><b>♥</b>A Message for You</div>
+    <h3 id="msgTitle"></h3>
+    <div id="msgBody"></div>
+    <span class="sign" id="sign"></span>
+  </section>
+  <button class="gift" id="giftBtn"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="10" width="18" height="11" rx="1"/><rect x="2" y="6" width="20" height="4" rx="1"/><path d="M12 6v15M12 6C9 1 5 3 8 6M12 6c3-5 7-3 4 0"/></svg>Send a Gift</button>
+</main>
+
+<dialog id="gift" aria-labelledby="gTitle">
+  <button id="x" aria-label="Tutup">×</button>
+  <svg class="gi" viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="26" width="48" height="30" rx="4" fill="#d63a62"/><rect x="5" y="20" width="54" height="10" rx="3" fill="#e8607f"/><rect x="29" y="20" width="6" height="36" fill="#f6d28b"/><path d="M32 20C22 6 10 16 20 20zM32 20c10-14 22-4 12 0z" fill="none" stroke="#f6d28b" stroke-width="4" stroke-linejoin="round"/></svg>
+  <h4 id="gTitle"></h4>
+  <p id="gText"></p>
+  <div class="chip2" id="chip2"></div>
+  <button class="claim" id="claim">Claim Wishes ♥</button>
+  <canvas id="fx" aria-hidden="true"></canvas>
+</dialog>
+
+<script>
+/* ============ EDIT THIS PART ============ */
+const CONFIG = {
+  title: "Happy Birthday Jemii",
+  message: [
+    "Happy birthday to a genuinely good person who",
+    "continue to inspire me in so many ways, Continue to",
+    "bring happiness to the people around you and never lose",
+    "the genuine heart that makes you special. I hope you",
+    "continue smiling and appreciating the little moments that",
+    "make life beautiful. Be haappy always, jemijemi."
+  ],
+  from: "jhom",
+  // 🎵 SONG: "wave to earth - love."
+  // Put your own copy of the song in the same folder as this file and name it love.mp3
+  // (or change the name below). It starts when she shoots the arrow, and the round
+  // button at the top-left pauses or resumes it. If the file is missing, the button hides.
+  song: "song.mp3",
+
+  // 📸 INSERT YOUR PHOTOS HERE
+  // 1) Copy your photos into the same folder as this HTML file (e.g. foto1.jpg).
+  // 2) Type each file name between the quotes below, one per tile.
+  // 3) Leave "" to keep the pink/blue placeholder tile.
+  // 4) Add or remove lines to change the count; the "6 Photos" label updates by itself.
+  photos: [
+    "2.jpeg",   // 📸 photo 1
+    "3.jpeg",   // 📸 photo 2
+    "4.jpeg",   // 📸 photo 3
+    "1.jpeg",   // 📸 photo 4
+    "5.jpeg",   // 📸 photo 5
+    "6.jpeg"    // 📸 photo 6
+  ],
+  giftTitle: "A Special Birthday Gift for You!",
+  giftText: "May your day be overflowing with love, happiness, sweet surprises, and all the magical moments you deserve!",
+  claimedText: "Wish claimed ♥"
+};
+/* ========================================= */
+
+const $ = s => document.querySelector(s);
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const COL = ['#f7b6c6', '#f08aa5', '#e8607f', '#A9C9F5', '#f6d28b'];
+
+/* content */
+$('#msgTitle').textContent = CONFIG.title;
+$('#sign').textContent = '- ' + CONFIG.from + ' -';
+CONFIG.message.forEach(t => { const p = document.createElement('p'); p.textContent = t; $('#msgBody').appendChild(p); });
+$('#count').textContent = CONFIG.photos.length + ' Photos';
+/* 📸 Photo tiles are built from CONFIG.photos above. You don't need to edit this part. */
+CONFIG.photos.forEach((src, i) => {
+  const d = document.createElement('div'); d.className = 'tile';
+  if (src) { const im = document.createElement('img'); im.src = src; im.alt = 'Foto kenangan ' + (i + 1); d.appendChild(im); }
+  else d.innerHTML = '<svg viewBox="0 0 64 64" aria-hidden="true"><path fill="#fff" d="M32 58C10 42 4 28 4 19 4 10 11 5 19 5c6 0 11 3 13 8 2-5 7-8 13-8 8 0 15 5 15 14 0 9-6 23-28 39z"/></svg>';
+  $('#grid').appendChild(d);
+});
+$('#gTitle').textContent = CONFIG.giftTitle;
+$('#gText').textContent = CONFIG.giftText;
+$('#chip2').textContent = '✦ HAPPY · BIRTHDAY · ' + new Date().getFullYear() + ' ✦';
+
+/* ---- Music ---- */
+const song = $('#song'), mBtn = $('#music'); let songOk = true, wantPlay = true;
+song.src = CONFIG.song; song.volume = 0;
+function sync() { const on = !song.paused; mBtn.classList.toggle('play', on); mBtn.setAttribute('aria-label', on ? 'Pause music' : 'Play music'); }
+function fade(to) { const t0 = performance.now(), from = song.volume; (function f(t) { const k = Math.min(1, (t - t0) / 2500); song.volume = from + (to - from) * k; if (k < 1) requestAnimationFrame(f); })(t0); }
+function startSong() { if (!wantPlay || !song.paused) return; song.play().then(() => fade(0.75)).catch(() => {}); }
+song.addEventListener('play', sync); song.addEventListener('pause', sync);
+song.addEventListener('error', () => { songOk = false; mBtn.classList.remove('on'); });
+mBtn.addEventListener('click', () => {
+  if (song.paused) { wantPlay = true; song.volume = 0.75; song.play().catch(() => {}); } else { wantPlay = false; song.pause(); }
+});
+
+/* ---- Scene flow ---- */
+let stage = 0, shot = false;
+const scenes = [$('#intro'), $('#banner')];
+const show = el => scenes.forEach(s => s.classList.toggle('on', s === el));
+function toBanner() { if (stage !== 0) return; stage = 1; show($('#banner')); setTimeout(toMain, RM ? 1500 : 3600); }
+function toMain() {
+  if (stage !== 1) return; stage = 2; show(null);
+  cv.style.display = 'block'; size(); t0 = performance.now(); loop();
+  $('#main').classList.add('ready'); if (songOk) mBtn.classList.add('on');
+}
+$('#banner').addEventListener('click', toMain);
+
+/* ---- Intro: bow & arrow ---- */
+const rig = $('#rig'), str = $('#string'), arrow = $('#arrow'), heartEl = $('#heart');
+let dist = 0, pull = 0, drag = null;
+function setPull(d) { pull = d; str.setAttribute('points', `14,-48 ${14 - d},0 14,48`); arrow.setAttribute('transform', `translate(${14 - d},0)`); }
+function aim() {
+  const b = $('#bow').getBoundingClientRect(), h = heartEl.getBoundingClientRect();
+  const bx = b.left + b.width / 2, by = b.top + b.height / 2, hx = h.left + h.width / 2, hy = h.top + h.height / 2;
+  dist = Math.hypot(hx - bx, hy - by);
+  rig.setAttribute('transform', `rotate(${Math.atan2(hy - by, hx - bx) * 180 / Math.PI})`);
+  setPull(0);
+}
+aim(); addEventListener('resize', () => { if (stage === 0 && !shot) aim(); });
+$('#intro').addEventListener('pointerdown', e => { if (!shot) drag = { x: e.clientX, y: e.clientY }; });
+addEventListener('pointermove', e => { if (drag) setPull(Math.min(60, Math.hypot(e.clientX - drag.x, e.clientY - drag.y)) * .9); });
+addEventListener('pointerup', () => { if (drag) { drag = null; shoot(); } });
+$('#hint').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); shoot(); } });
+
+function shoot() {
+  if (shot || stage !== 0) return; shot = true; startSong();
+  const p0 = Math.max(pull, 40), from = 14 - p0, to = dist - 94, t0 = performance.now();
+  str.setAttribute('points', '14,-48 14,0 14,48');
+  (function f(t) {
+    const k = Math.min(1, (t - t0) / 420);
+    arrow.setAttribute('transform', `translate(${from + (to - from) * k * k},0)`);
+    k < 1 ? requestAnimationFrame(f) : hit();
+  })(t0);
+}
+function hit() {
+  const h = heartEl.getBoundingClientRect(), x = h.left + h.width / 2, y = h.top + h.height / 2;
+  heartEl.classList.add('pop'); arrow.style.opacity = 0;
+  for (let i = 0; i < 18; i++) {
+    const s = document.createElement('span'), a = Math.random() * 6.28, r = 60 + Math.random() * 100;
+    s.textContent = '♥';
+    s.style.cssText = `position:fixed;left:${x}px;top:${y}px;color:${COL[i % 5]};font-size:${12 + Math.random() * 16}px;z-index:30;pointer-events:none`;
+    document.body.appendChild(s);
+    s.animate([{ transform: 'translate(-50%,-50%) scale(.4)', opacity: 1 }, { transform: `translate(${Math.cos(a) * r}px,${Math.sin(a) * r}px) scale(1)`, opacity: 0 }], { duration: 900, easing: 'ease-out' }).onfinish = () => s.remove();
+  }
+  setTimeout(toBanner, 900);
+}
+
+/* ---- Heart tree ---- */
+const cv = $('#tree'), ctx = cv.getContext('2d');
+let W, H, U, CX, br = [], tips = [], hearts = [], fall = [], t0 = 0;
+const path = new Path2D('M32 58C10 42 4 28 4 19 4 10 11 5 19 5c6 0 11 3 13 8 2-5 7-8 13-8 8 0 15 5 15 14 0 9-6 23-28 39z');
+const SP = [['#ffc2d1', '#e8607f'], ['#ffb0c8', '#ee4f86'], ['#ff9fb9', '#d63a62'], ['#fff0b8', '#e0a43a'], ['#DCEEFF', '#789AC5']].map(([a, b]) => {
+  const c = document.createElement('canvas'); c.width = c.height = 64; const x = c.getContext('2d');
+  const g = x.createRadialGradient(24, 20, 4, 32, 32, 38); g.addColorStop(0, a); g.addColorStop(1, b);
+  x.fillStyle = g; x.fill(path); x.strokeStyle = 'rgba(110,18,48,.4)'; x.lineWidth = 2; x.stroke(path);
+  x.fillStyle = 'rgba(255,255,255,.6)'; x.beginPath(); x.ellipse(20, 17, 7, 4, -.6, 0, 6.3); x.fill(); return c;
+});
+function grow(x, y, a, l, w, d) {
+  if (d > 6) return;
+  const x2 = x + Math.cos(a) * l, y2 = y + Math.sin(a) * l;
+  br.push({ x, y, x2, y2, w, d }); if (d >= 3) tips.push([x2, y2]);
+  if (d === 0) { grow(x2, y2, a - .62, l * .75, w * .7, 1); grow(x2, y2, a + .62, l * .75, w * .7, 1); return; }
+  const k = d < 3 ? 2 : (Math.random() < .4 ? 3 : 2);
+  for (let i = 0; i < k; i++) grow(x2, y2, a + (k === 2 ? (i ? 1 : -1) : i - 1) * (.42 + Math.random() * .2) + (Math.random() - .5) * .2, l * (.72 + Math.random() * .08), w * .68, d + 1);
+}
+function size() {
+  const d = Math.min(devicePixelRatio || 1, 2);
+  W = innerWidth; H = innerHeight; cv.width = W * d; cv.height = H * d; ctx.setTransform(d, 0, 0, d, 0, 0);
+  U = Math.min(H * .075, W * (W > 820 ? .075 : .068)); CX = W > 820 ? W * .66 : W / 2;
+  br = []; tips = []; hearts = [];
+  grow(CX, H + 10, -Math.PI / 2, U * 3.6, U * .5, 0);
+  tips.forEach(([x, y]) => { for (let i = 0; i < 3; i++) hearts.push({ x: x + (Math.random() - .5) * U * .9, y: y + (Math.random() - .5) * U * .9, s: U * (.3 + Math.random() * .22), sp: SP[(Math.random() * 5) | 0], d: 2200 + Math.random() * 3200, r: (Math.random() - .5) * .5 }); });
+  if (RM) draw(99999);
+}
+addEventListener('resize', () => { if (stage === 2) size(); });
+function draw(now) {
+  ctx.clearRect(0, 0, W, H);
+  const gy = H - U * 7, g = ctx.createRadialGradient(CX, gy, 0, CX, gy, U * 8.5);
+  g.addColorStop(0, 'rgba(255,253,251,.95)'); g.addColorStop(1, 'rgba(255,253,251,0)'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = '#6b3a2e'; ctx.lineCap = 'round';
+  for (const b of br) {
+    const p = Math.min(1, Math.max(0, (now - b.d * 380) / 520)); if (!p) continue;
+    ctx.lineWidth = Math.max(1.2, b.w); ctx.beginPath(); ctx.moveTo(b.x, b.y); ctx.lineTo(b.x + (b.x2 - b.x) * p, b.y + (b.y2 - b.y) * p); ctx.stroke();
+  }
+  for (const h of hearts) {
+    const k = Math.min(1, Math.max(0, (now - h.d) / 600)); if (!k) continue;
+    const e = 1 + 2.7 * (k - 1) ** 3 + 1.7 * (k - 1) ** 2, s = h.s * e;
+    ctx.save(); ctx.translate(h.x, h.y); ctx.rotate(h.r); ctx.drawImage(h.sp, -s / 2, -s / 2, s, s); ctx.restore();
+  }
+}
+function loop() {
+  const now = performance.now() - t0; draw(now);
+  if (RM) return;
+  if (now > 4500 && fall.length < 40 && Math.random() < .08) { const h = hearts[(Math.random() * hearts.length) | 0]; fall.push({ x: h.x, y: h.y, v: .6 + Math.random() * .8, ph: Math.random() * 6, r: 0, vr: (Math.random() - .5) * .05, s: U * .22, sp: h.sp }); }
+  fall = fall.filter(f => f.y < H + 20);
+  for (const f of fall) {
+    f.y += f.v; f.x += Math.sin(f.y / 45 + f.ph) * .6; f.r += f.vr;
+    ctx.save(); ctx.globalAlpha = .85; ctx.translate(f.x, f.y); ctx.rotate(f.r); ctx.drawImage(f.sp, -f.s / 2, -f.s / 2, f.s, f.s); ctx.restore();
+  }
+  requestAnimationFrame(loop);
+}
+
+/* ---- Gift dialog ---- */
+const dlg = $('#gift'), fx = $('#fx'), fc = fx.getContext('2d'); let bits = [], fxOn = false;
+$('#giftBtn').addEventListener('click', () => { $('#claim').disabled = false; $('#claim').textContent = 'Claim Wishes ♥'; dlg.showModal(); });
+$('#x').addEventListener('click', () => dlg.close());
+dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+$('#claim').addEventListener('click', e => {
+  e.currentTarget.disabled = true; e.currentTarget.textContent = CONFIG.claimedText;
+  fx.width = innerWidth; fx.height = innerHeight;
+  for (let i = 0; i < 130; i++) { const a = Math.random() * 6.28, v = 3 + Math.random() * 10; bits.push({ x: innerWidth / 2, y: innerHeight / 2, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 4, c: i % 4 === 0 ? '#f6d28b' : COL[i % 5], s: 4 + Math.random() * 6, h: i % 3 === 0, l: 1 }); }
+  if (!fxOn) { fxOn = true; fxLoop(); }
+});
+function fxLoop() {
+  fc.clearRect(0, 0, fx.width, fx.height); bits = bits.filter(b => b.l > 0);
+  for (const b of bits) {
+    b.vy += .22; b.vx *= .99; b.x += b.vx; b.y += b.vy; b.l -= .008;
+    fc.globalAlpha = Math.max(0, b.l); fc.fillStyle = b.c;
+    if (b.h) { fc.font = b.s * 2.6 + 'px serif'; fc.fillText('♥', b.x, b.y); } else fc.fillRect(b.x, b.y, b.s, b.s * .6);
+  }
+  if (bits.length) requestAnimationFrame(fxLoop); else { fxOn = false; fc.clearRect(0, 0, fx.width, fx.height); }
+}
+</script>
+</body>
+</html>
